@@ -44,18 +44,18 @@ odoo.define('l10n_ar_pos_einvoice_ticket', function (require) {
                                 rpc.query({
                                     model: 'account.move',
                                     method: 'search_read',
-                                    args: [[['id', '=', account_move]], ['afip_auth_code',
-                                                                        'afip_auth_code_due',
-                                                                        'afip_qr_code',
+                                    args: [[['id', '=', account_move]], ['l10n_ar_afip_auth_code',
+                                                                        'l10n_ar_afip_auth_code_due',
+                                                                        'l10n_ar_afip_qr_code',
                                                                         'l10n_latam_document_type_id',
                                                                         ]],
                                 }
 
                                 ).then(function (invoices) {
                                     console.log('invoices', invoices)
-                                    self.get_order().afip_qr_code = invoices[0]['afip_qr_code'];
-                                    self.get_order().afip_auth_code = invoices[0]['afip_auth_code'];
-                                    self.get_order().afip_auth_code_due = invoices[0]['afip_auth_code_due'];
+                                    self.get_order().l10n_ar_afip_qr_code = invoices[0]['l10n_ar_afip_qr_code'];
+                                    self.get_order().l10n_ar_afip_auth_code = invoices[0]['l10n_ar_afip_auth_code'];
+                                    self.get_order().l10n_ar_afip_auth_code_due = invoices[0]['l10n_ar_afip_auth_code_due'];
                                     self.get_order().l10n_latam_document_type_id = invoices[0]['l10n_latam_document_type_id'][1].split(" ")[0];
                                     self.get_order().l10n_latam_document_name = invoices[0]['l10n_latam_document_type_id'][1].substr(invoices[0]['l10n_latam_document_type_id'][1].indexOf(" ") + 1);
                                     console.log('self.get_order()', self.get_order())
@@ -82,14 +82,14 @@ odoo.define('l10n_ar_pos_einvoice_ticket', function (require) {
             if(this.invoice_letter){
                 receipt.invoice_letter = this.invoice_letter;
             }
-            if(this.afip_qr_code){
-                receipt.afip_qr_code = this.afip_qr_code;
+            if(this.l10n_ar_afip_qr_code){
+                receipt.l10n_ar_afip_qr_code = this.l10n_ar_afip_qr_code;
             }
-            if(this.afip_auth_code){
-                receipt.afip_auth_code = this.afip_auth_code;
+            if(this.l10n_ar_afip_auth_code){
+                receipt.l10n_ar_afip_auth_code = this.l10n_ar_afip_auth_code;
             }
-            if(this.afip_auth_code_due){
-                receipt.afip_auth_code_due = this.afip_auth_code_due;
+            if(this.l10n_ar_afip_auth_code_due){
+                receipt.l10n_ar_afip_auth_code_due = this.l10n_ar_afip_auth_code_due;
             }
             if(this.l10n_latam_document_type_id){
                 receipt.l10n_latam_document_type_id = this.l10n_latam_document_type_id;
